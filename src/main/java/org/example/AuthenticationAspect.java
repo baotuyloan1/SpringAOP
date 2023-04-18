@@ -10,15 +10,13 @@ public class AuthenticationAspect {
 
     @Pointcut("within(org.example..*)")
     public void authenticatingPointCut() {
-        System.out.println("authenticatingPointCut");
     }
 
-    @Pointcut("within(org.example.ShoppingCart.*)")
+    @Pointcut("within(org..*)")
     public void authorizationPointCut() {
-        System.out.println("authorizationPointCut");
     }
 
-    @Before("authenticatingPointCut() || authorizationPointCut()")
+    @Before("authenticatingPointCut() && authorizationPointCut()")
     public void authenticate() {
         System.out.println("Authenticating the Request");
     }
